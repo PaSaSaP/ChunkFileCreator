@@ -7,10 +7,10 @@ def main():
 	(options, args) = parser.parse_args()
 
 	with open(options.filename, "rb") as f:
-		current_chunk = int.from_bytes(f.read(4), byteorder='big')
-		num_of_chunks = int.from_bytes(f.read(4), byteorder='big')
-		chunk_size = int.from_bytes(f.read(4), byteorder='big')
-		reserved = int.from_bytes(f.read(4), byteorder='big')
+		current_chunk = int.from_bytes(f.read(4), byteorder='little')
+		num_of_chunks = int.from_bytes(f.read(4), byteorder='little')
+		chunk_size = int.from_bytes(f.read(4), byteorder='little')
+		reserved = int.from_bytes(f.read(4), byteorder='little')
 	print(F"current_chunk = {current_chunk}")
 	print(F"num_of_chunks = {num_of_chunks}")
 	print(F"chunk_size = {chunk_size}")

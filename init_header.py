@@ -10,10 +10,10 @@ def main():
 
 	with open(options.filename, "wb") as f:
 		f.seek(0)
-		f.write((0).to_bytes(4, byteorder='big'))  # current chunk
-		f.write(options.num_of_chunks.to_bytes(4, byteorder='big'))
-		f.write(options.chunk_size.to_bytes(4, byteorder='big'))
-		f.write((0).to_bytes(4, byteorder='big'))  # reserved
+		f.write((0).to_bytes(4, byteorder='little'))  # current chunk
+		f.write(options.num_of_chunks.to_bytes(4, byteorder='little'))
+		f.write(options.chunk_size.to_bytes(4, byteorder='little'))
+		f.write((0).to_bytes(4, byteorder='little'))  # reserved
 
 if __name__ == "__main__":
 	main()
