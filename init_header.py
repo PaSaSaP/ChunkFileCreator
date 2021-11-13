@@ -8,12 +8,14 @@ def main():
 	parser.add_option("-s", "--chunk-size", type="int", dest="chunk_size")
 	(options, args) = parser.parse_args()
 
-	with open(options.filename, "ab") as f:
+	with open(options.filename, "wb") as f:
 		f.seek(0)
 		f.write((0).to_bytes(4, byteorder='little'))  # current chunk
 		f.write(options.num_of_chunks.to_bytes(4, byteorder='little'))
 		f.write(options.chunk_size.to_bytes(4, byteorder='little'))
 		f.write((0).to_bytes(4, byteorder='little'))  # reserved
+		f.seek(16 + options.num_of_chunks * options.chunk_size - 1)
+		f.write(b'\0')
 
 if __name__ == "__main__":
 	main()
